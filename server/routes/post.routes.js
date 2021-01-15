@@ -36,4 +36,13 @@ router.get('/',
     postsController.getPostsByUser
 );
 
+/** @route      GET /api/posts/image/:id
+ *  @desc       Get comments for image ID
+ *  @access     Private
+ */
+router.get('/image/:id',
+    auth,
+    postsController.getPostWhereImgId
+);
+
 module.exports = router;
