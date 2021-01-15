@@ -19,3 +19,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `role`, `token`)
 VALUES
 	(1,'admin@admin.com','$2b$10$kkjJJHDT/8NLg.sSSylwjO/KhuY6xfQLHEF2JjglOzPS4Jbb2fny2',2, NULL);
 ```
+
+* Admin credentials:
+ - email: admin@admin.com
+ - password: Admin2021!
