@@ -3,7 +3,12 @@ const helperFunction = require('../helpers/helperFunction');
 const {validationResult} = require('express-validator');
 const {validationError} = require('../helpers/helperFunction');
 const Post = db.posts;
+const Notification = db.notifications;
 const sequelize = db.sequelize;
+const Op = db.Sequelize.Op;
+
+//Define const bad score
+const maxBadScore = 5;
 
 // create and save a new post
 exports.create = async (req, res, next) => {
@@ -24,6 +29,26 @@ exports.create = async (req, res, next) => {
             // save the user in the database
             await Post.create(post, {transaction: t}).then((data) => {
                 t.commit();
+
+                //Find lastScore and check if is a second bad score
+                // then send create notification
+                const fBadScoreImg = findBadScoreImg(req.body.imageId);
+
+                fBadScoreImg.then(async (post) => {
+                    if(post && req.body.score <= maxBadScore){
+                        //begin second database transaction
+                        const t2 = await sequelize.transaction();
+
+                        //Then create a notification
+                        Notification.create({
+                            message: "Image received a second bad score.",
+                            type: "image_score",
+                            refId: req.body.imageId
+                        }, {transaction: t2}).then((data) => {
+                            t2.commit();
+                        });
+                    }
+                });
 
                 res.json(helperFunction.responseHandler(
                     true, 200, 'Post created successfully!', data
@@ -142,3 +167,25 @@ exports.getLastPostByUser = id => {
             return err;
         });
 };
+
+function findBadScoreImg(imgId){
+    return Post.findAll({
+        include: ['image'],
+        where: {
+            imageId: imgId,
+            score: { [Op.lte]: maxBadScore }
+        },
+        order: [ [ 'id', 'DESC' ]],
+        raw: true
+    })
+        .then(posts => {
+            console.log("ciaaaao", posts)
+            if(posts && posts.length === 2)
+                return posts[0];
+
+            return null;
+        })
+        .catch(err => {
+            return err;
+        });
+}

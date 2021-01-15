@@ -15,6 +15,7 @@ db.sequelize = sequelize;
 db.users = require('./user.model.js')(sequelize, Sequelize);
 db.images = require('./image.model.js')(sequelize, Sequelize);
 db.posts = require('./post.model.js')(sequelize, Sequelize);
+db.notifications = require('./notification.model.js')(sequelize, Sequelize);
 
 db.posts.belongsTo(db.images, {
     foreignKey: "imageId",

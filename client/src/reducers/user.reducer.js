@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-                isAuth: true,
+                isAuth: action.payload.data.loggedIn,
                 loading: false
             };
 
