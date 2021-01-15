@@ -83,6 +83,7 @@ class PostsPage extends Component {
                                 <React.Fragment>
                                     <img
                                         width={400}
+                                        className="img-day"
                                         alt={`img-day`}
                                         src={HOST_SERVER + image.name}
                                     />
