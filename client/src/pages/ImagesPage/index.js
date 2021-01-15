@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import CoverCard from '../../components/CoverCard/CoverCard';
 import Notification from '../../components/Notification/Notification';
@@ -59,6 +60,11 @@ class ImagesPage extends Component {
         });
     };
 
+    onDetailsImage = imgId => {
+        //Go to details page
+        this.props.history.push("/images/" + imgId);
+    };
+
     onFormSubmit = e => {
         e.preventDefault();
         const formData = new FormData();
@@ -104,6 +110,7 @@ class ImagesPage extends Component {
                                                 id={image.id} 
                                                 url={HOST_SERVER + image.name} 
                                                 handleDeleteClick={this.onDeleteImage}
+                                                handleDetailsClick={this.onDetailsImage}
                                             />
                                         </Col>
                                     );
@@ -136,4 +143,4 @@ class ImagesPage extends Component {
     }
 }
 
-export default ImagesPage;
+export default withRouter(ImagesPage);

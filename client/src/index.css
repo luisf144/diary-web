@@ -39,3 +39,7 @@ input.error {
 .ant-form-item-extra{
   margin-top: 20px;
 }
+
+.comment-list {
+  margin-top: -80px;
+}

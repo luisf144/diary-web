@@ -78,7 +78,7 @@ class PostsPage extends Component {
 
                 this.state.image ? 
                     (
-        <               Card title="Post of the Day" style={{ marginBottom: 80 }}>
+                        <Card title="Post of the Day" style={{ marginBottom: 80 }}>
                             <div className="center">
                                 <React.Fragment>
                                     <img

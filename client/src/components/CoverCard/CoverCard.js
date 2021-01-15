@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, CommentOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
-function CoverCard({ id, url, handleDeleteClick }) {
+function CoverCard({ id, url, handleDeleteClick, handleDetailsClick }) {
   
   return (
     <Card
@@ -18,10 +18,11 @@ function CoverCard({ id, url, handleDeleteClick }) {
     }
     actions={[
       <DeleteOutlined key="delete" onClick={() => handleDeleteClick(id)} />,
+      <CommentOutlined key="details" onClick={() => handleDetailsClick(id)} />,
     ]}
   >
     <Meta
-      title={`Image #${id}`}
+      title={`Image ${id}`}
       description="Click to see details."
     />
   </Card>

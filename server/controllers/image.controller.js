@@ -31,7 +31,7 @@ exports.getRandomImage = async (req, res, next) => {
 
     posts.then((post) =>{
         if(post){
-            const createdAt = moment(posts.createdAt).format("YYYY-MM-DD");
+            const createdAt = moment(post.createdAt).format("YYYY-MM-DD");
             const now = moment().format("YYYY-MM-DD");
 
             //Check if the user already create a post (comment) during the day
