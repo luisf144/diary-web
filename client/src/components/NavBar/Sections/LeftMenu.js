@@ -15,8 +15,17 @@ function LeftMenu(props) {
     {
       user.userData && user.userData.isAdmin ? 
         (
-          <Menu.Item key="images">
-            <a href="/images">Images</a>
+            <Menu.Item key="images">
+              <a href="/images">Images</a>
+            </Menu.Item>
+        ): null
+    }
+
+    {
+      user.userData && user.userData.isAdmin ? 
+        (
+          <Menu.Item key="notifications">
+            <a href="/notifications">Notifications</a>
           </Menu.Item>
         ): null
     }

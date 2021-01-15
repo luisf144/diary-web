@@ -6,10 +6,9 @@ import LoginPage from './pages/LoginPage';
 import NavBar from './components/NavBar';
 import RegisterPage from './pages/RegisterPage';
 import PostDayPage from './pages/PostsPage';
-
-import { Layout } from 'antd';
 import ImageDetailPage from './pages/ImageDetailPage';
-
+import NotificationsPage from './pages/NotificationsPage';
+import { Layout } from 'antd';
 const { Content, Footer } = Layout;
 
 function App() {
@@ -25,6 +24,7 @@ function App() {
           <Switch>
             <Route exact path="/images" component={Auth(ImagesPage, true, true)} />
             <Route exact path="/images/:imgId" component={Auth(ImageDetailPage, true, true)} />
+            <Route exact path="/notifications" component={Auth(NotificationsPage, true, true)} />
             <Route exact path="/" component={Auth(PostDayPage, true)} />
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
