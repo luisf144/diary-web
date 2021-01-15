@@ -13,6 +13,11 @@ Replace with your MySQL connection
 Go inside client and server folder, run `npm start`
 ```
 
+## Create DB: diary
+```
+CREATE DATABASE diary;
+```
+
 ## Run INSERT SQL query to create the user 'Admin'
 ```
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `token`)
